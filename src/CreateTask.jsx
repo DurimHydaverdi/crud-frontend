@@ -12,7 +12,7 @@ const CreateTask = () => {
         axios.post("http://localhost:3001/createTask", { task, description })
             .then(result => {
                 console.log(result);
-                navigate('/');
+                navigate('/tasks');
             })
             .catch(err => console.log(err));
     };
@@ -30,8 +30,8 @@ const CreateTask = () => {
                         <label htmlFor="">Description</label>
                         <input type="text" placeholder='Type here' className='form-control' onChange={(e) => setDescription(e.target.value)} />
                     </div>
-                    <button className='btn btn-success m-1'>Submit</button>
-                    <button type="button" className='btn btn-secondary' onClick={() => navigate('/')}>Back</button>
+                    <button type='submit' className='btn btn-success m-1'>Submit</button>
+                    <button type="button" className='btn btn-secondary' onClick={() => navigate('/tasks')}>Back</button>
                 </form>
             </div>
         </div>

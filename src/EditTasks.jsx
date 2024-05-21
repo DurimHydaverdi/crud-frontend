@@ -11,8 +11,12 @@ const EditTasks = () => {
     useEffect(() => {
         axios.get('http://localhost:3001/getTask/' + id)
             .then(result => {
-                setTask(result.data.task);
-                setDescription(result.data.description);
+                const { task, description } = result.data;
+                // Check if task and description exist before setting state
+                if (task !== undefined && description !== undefined) {
+                    setTask(task);
+                    setDescription(description);
+                }
             })
             .catch(err => console.log(err));
     }, [id]);
@@ -22,7 +26,7 @@ const EditTasks = () => {
         axios.put("http://localhost:3001/editTask/" + id, { task, description })
             .then(result => {
                 console.log(result);
-                navigate('/');
+                navigate('/tasks');
             })
             .catch(err => console.log(err));
     };
